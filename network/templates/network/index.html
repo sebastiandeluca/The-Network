@@ -1,0 +1,57 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<input id="mytoken" type="hidden" value="{% csrf_token %}"></input>
+<div id="home-page">
+    <div id="home-page-content-container">
+        <div id="home-page-content">
+            <div id="network_logo">
+                <img id="logo" src="https://i.ibb.co/q7q7YWQ/network-img.png" alt="network-img">
+            </div>
+            {% if user.is_authenticated %}
+            <div id="new-post-container">
+                <div id="new-post">
+                    <h3 id="new-post-header">Create a New Post:</h3>
+                    <form id="new-post-maker">
+                        {% csrf_token %}
+                        <textarea id="content-body" placeholder="Say what you're thinking..." name="post-content"></textarea>
+                        <input type="hidden" value={{ user.username }} id="post-create-username">
+                        <input type="submit" class="submit-btn" id="submit-btn" value="Make Post" name="create">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            <div id="posts-container">
+                <div id="posts">{% csrf_token %}</div>
+            </div>
+            <div id="page-nav">
+                <ul class="pagination" id="navbtns">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="profile-page">
+    <div id="profile-content-container">
+        <div id="profile-content">
+            <div id="profile-container">
+                <div id="profile"></div>
+            </div>
+                <div id="profile-posts">
+                    <div id="posts-header"></div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/network.js' %}"></script>
+{% endblock %}
+
+    
